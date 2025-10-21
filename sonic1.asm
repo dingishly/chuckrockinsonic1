@@ -14,7 +14,7 @@
 align macro
 	cnop 0,\1
 	endm
-	
+		include	"macro.asm"	; S1HS macros
 StartOfRom:
 Vectors:	dc.l $FFFE00, EntryPoint, BusError, AddressError
 		dc.l IllegalInstr, ZeroDivide, ChkInstr, TrapvInstr
@@ -23704,7 +23704,7 @@ loc_12E0E:
 ; ---------------------------------------------------------------------------
 
 Obj01_MdNormal:				; XREF: Obj01_Modes
-		bsr.w	Sonic_SpinDash
+		;bsr.w	Sonic_SpinDash
 		bsr.w	Sonic_Jump
 		bsr.w	Sonic_SlopeResist
 		bsr.w	Sonic_Move
@@ -23713,6 +23713,7 @@ Obj01_MdNormal:				; XREF: Obj01_Modes
 		jsr	SpeedToPos
 		bsr.w	Sonic_AnglePos
 		bsr.w	Sonic_SlopeRepel
+		bsr.w   Sonic_AirRoll
 		rts	
 ; ===========================================================================
 
@@ -24377,9 +24378,8 @@ locret_133E8:
 ; ||||||||||||||| S U B	R O U T	I N E |||||||||||||||||||||||||||||||||||||||
 
 
-Sonic_Jump:				; XREF: Obj01_MdNormal; Obj01_MdRoll
-		move.b	($FFFFF603).w,d0
-		andi.b	#$70,d0		; is A,	B or C pressed?
+Sonic_Jump:				; XREF: Obj01_MdNormal; Obj01_MdRoll		
+		tpress A+C,(SonicControl) ; if A, B or C pressed
 		beq.w	locret_1348E	; if not, branch
 		moveq	#0,d0
 		move.b	$26(a0),d0
@@ -24465,7 +24465,7 @@ locret_134D2:
 
 Sonic_AirRoll:
         move.b    ($FFFFF603).w,d0 ; Move $FFFFF603 to d0
-        andi.b    #$70,d0 ; Has A/B/C been pressed?
+        tpress	B,(Joypad)	; is B button pressed?
         bne.w    AirRoll_Checks ; If so, branch.
         rts ; Return.
  
