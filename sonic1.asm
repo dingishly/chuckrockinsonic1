@@ -34803,12 +34803,12 @@ Hurt_Shield:
 		move.b	#4,$24(a0)
 		bsr.w	Sonic_ResetOnFloor
 		bset	#1,$22(a0)
-		move.w	#-$400,$12(a0)	; make Sonic bounce away from the object
-		move.w	#-$200,$10(a0)
-		btst	#6,$22(a0)
-		beq.s	Hurt_Reverse
-		move.w	#-$200,$12(a0)
-		move.w	#-$100,$10(a0)
+		;move.w	#-$400,$12(a0)	; make Sonic bounce away from the object
+		;move.w	#-$200,$10(a0)
+		;btst	#6,$22(a0)
+		;beq.s	Hurt_Reverse
+		;move.w	#-$200,$12(a0)
+		;move.w	#-$100,$10(a0)
 
 Hurt_Reverse:
 		bcs.s	Hurt_ChkSpikes	; if Sonic is left of the object, branch
