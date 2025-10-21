@@ -24409,7 +24409,8 @@ loc_1341C:
 		move.b	#1,$3C(a0)
 		clr.b	$38(a0)
 		move.w	#$A0,d0
-		jsr	(PlaySound_Special).l ;	play jumping sound
+		moveq    #$FFFFFF85,d0
+        	jsr    PlaySample
 		move.b	#$13,$16(a0)
 		move.b	#9,$17(a0)
 		btst	#2,$22(a0)
@@ -34806,8 +34807,8 @@ Hurt_Shield:
 		move.w	#-$200,$10(a0)
 		btst	#6,$22(a0)
 		beq.s	Hurt_Reverse
-		move.w	#-$0,$12(a0)
-		move.w	#-$0,$10(a0)
+		move.w	#-$200,$12(a0)
+		move.w	#-$100,$10(a0)
 
 Hurt_Reverse:
 		bcs.s	Hurt_ChkSpikes	; if Sonic is left of the object, branch
