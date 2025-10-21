@@ -23792,7 +23792,6 @@ Obj01_NotRight:
 		bclr	#5,$22(a0)
 		move.b	#5,$1C(a0)	; use "standing" animation
 		btst	#3,$22(a0)
-		beq.s	Sonic_Balance
 		moveq	#0,d0
 		move.b	$3D(a0),d0
 		lsl.w	#6,d0

@@ -59,7 +59,7 @@ MegaPCM:
 	DAC_Entry	$08, Snare, dpcm		; $82	- Snare
 	DAC_Entry	$1B, Timpani, dpcm		; $83	- Timpani
 	DAC_Entry    	$19, V_Hurt, pcm+pri        	; $84   - V_Hurt
-	DAC_Entry    	$19, V_Jump, pcm        	; $85   - V_Jump
+	DAC_Entry    	$19, V_Jump, pcm+pri        	; $85   - V_Jump
 	dc.l	0,0					; $86	- <Free>
 	dc.l	0,0					; $87	- <Free>
 	DAC_Entry	$12, Timpani, dpcm		; $88	- Hi-Timpani
