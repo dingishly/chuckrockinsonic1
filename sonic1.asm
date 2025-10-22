@@ -24488,6 +24488,8 @@ Sonic_SpinDash:
 		beq.s	locret_1AC8C
 		cmpi.b	#2,$1C(a0) ; check if rolling anim
 		beq.s	locret_1AC8C
+		cmpi.b	#8,$1C(a0) ; check if ducking anim
+		beq.s	locret_1AC8C
 		move.b	($FFFFF603).w,d0
 		tpress	B,(Joypad)	; is B button pressed?
 		beq.w	locret_1AC8C
