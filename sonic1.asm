@@ -24510,13 +24510,14 @@ locret_1AC8C:
 ; ---------------------------------------------------------------------------
 
 loc_1AC8E:
-		move.b	($FFFFF602).w,d0
-		btst	#1,d0
+		;move.b	($FFFFF602).w,d0
+		;btst	#1,d0
+		theld	B,(Joypad)	; is B button held?
 		bne.w	loc_1AD30
 		move.b	#$E,$16(a0)
 		move.b	#7,$17(a0)
 		move.b	#$1F,$1C(a0)
-		addq.w	#5,$C(a0)
+		;addq.w	#5,$C(a0)
 		move.b	#0,$39(a0)
 		moveq	#0,d0
 		move.b	$3A(a0),d0
