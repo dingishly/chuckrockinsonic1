@@ -23618,9 +23618,9 @@ Obj01_ChkShoes:
 		beq.s	Obj01_ExitChk
 		subq.w	#1,$34(a0)	; subtract 1 from time
 		bne.s	Obj01_ExitChk
-		move.w	#$600,($FFFFF760).w ; restore Sonic's speed
-		move.w	#$C,($FFFFF762).w ; restore Sonic's acceleration
-		move.w	#$80,($FFFFF764).w ; restore Sonic's deceleration
+		move.w	#$235,($FFFFF760).w ; restore Sonic's speed
+		move.w	#$235,($FFFFF762).w ; restore Sonic's acceleration
+		move.w	#$235,($FFFFF764).w ; restore Sonic's deceleration
 		move.b	#0,($FFFFFE2E).w ; cancel speed	shoes
 		move.w	#$E3,d0
 		jmp	(PlaySound).l	; run music at normal speed
@@ -23670,9 +23670,9 @@ Obj01_InWater:
 		bsr.w	ResumeMusic
 		move.b	#$A,($FFFFD340).w ; load bubbles object	from Sonic's mouth
 		move.b	#$81,($FFFFD368).w
-		move.w	#$300,($FFFFF760).w ; change Sonic's top speed
-		move.w	#6,($FFFFF762).w ; change Sonic's acceleration
-		move.w	#$40,($FFFFF764).w ; change Sonic's deceleration
+		move.w	#$235,($FFFFF760).w ; change Sonic's top speed
+		move.w	#$235,($FFFFF762).w ; change Sonic's acceleration
+		move.w	#$235,($FFFFF764).w ; change Sonic's deceleration
 		asr	$10(a0)
 		asr	$12(a0)
 		asr	$12(a0)
@@ -23686,9 +23686,9 @@ Obj01_OutWater:
 		bclr	#6,$22(a0)
 		beq.s	locret_12D80
 		bsr.w	ResumeMusic
-		move.w	#$600,($FFFFF760).w ; restore Sonic's speed
-		move.w	#$C,($FFFFF762).w ; restore Sonic's acceleration
-		move.w	#$80,($FFFFF764).w ; restore Sonic's deceleration
+		move.w	#$235,($FFFFF760).w ; restore Sonic's speed
+		move.w	#$235,($FFFFF762).w ; restore Sonic's acceleration
+		move.w	#$235,($FFFFF764).w ; restore Sonic's deceleration
 		asl	$12(a0)
 		beq.w	locret_12D80
 		move.b	#8,($FFFFD300).w ; load	splash object
