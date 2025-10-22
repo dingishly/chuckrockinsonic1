@@ -24491,7 +24491,7 @@ Sonic_SpinDash:
 		move.b	($FFFFF603).w,d0
 		tpress	B,(Joypad)	; is B button pressed?
 		beq.w	locret_1AC8C
-		move.b	#9,$1C(a0)
+		move.b	#$1F,$1C(a0)
 		;move.w	#$E0,d0
 		;jsr	(PlaySound_Special).l
 		addq.l	#4,sp
@@ -24564,8 +24564,8 @@ loc_1AD48:
 		andi.b	#$70,d0	; 'p'
 		beq.w	loc_1AD78
 		move.w	#$1F00,$1C(a0)
-		move.w	#$E0,d0	; 'à'
-		jsr	(PlaySound_Special).l
+		;move.w	#$E0,d0	; 'à'
+		;jsr	(PlaySound_Special).l
 		addi.w	#$200,$3A(a0)
 		cmpi.w	#$800,$3A(a0)
 		bcs.s	loc_1AD78
