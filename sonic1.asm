@@ -23953,6 +23953,8 @@ locret_1307C:
 
 
 Sonic_MoveLeft:				; XREF: Sonic_Move
+		cmpi.b	#8,$1C(a0) ; check if ducking anim
+		beq.s	nomoveleft
 		move.w	$14(a0),d0
 		beq.s	loc_13086
 		bpl.s	loc_130B2
@@ -23974,7 +23976,7 @@ loc_1309A:
 loc_130A6:
 		move.w	d0,$14(a0)
 		move.b	#0,$1C(a0)	; use walking animation
-		rts	
+nomoveleft:	rts	
 ; ===========================================================================
 
 loc_130B2:				; XREF: Sonic_MoveLeft
@@ -24004,6 +24006,8 @@ locret_130E8:
 
 
 Sonic_MoveRight:			; XREF: Sonic_Move
+		cmpi.b	#8,$1C(a0) ; check if ducking anim
+		beq.s	nomoveright
 		move.w	$14(a0),d0
 		bmi.s	loc_13118
 		bclr	#0,$22(a0)
@@ -24020,7 +24024,7 @@ loc_13104:
 loc_1310C:
 		move.w	d0,$14(a0)
 		move.b	#0,$1C(a0)	; use walking animation
-		rts	
+nomoveright:	rts	
 ; ===========================================================================
 
 loc_13118:				; XREF: Sonic_MoveRight
