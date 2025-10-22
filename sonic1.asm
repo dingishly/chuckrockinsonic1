@@ -23814,8 +23814,6 @@ Obj01_NotRight:
 ; ===========================================================================
 
 Sonic_Balance:
-		jsr	ObjHitFloor
-		cmpi.w	#$C,d1
 		blt.s	Sonic_LookUp
 		cmpi.b	#3,$36(a0)
 		bne.s	loc_12F62
@@ -23833,7 +23831,6 @@ loc_12F6A:
 		bset	#0,$22(a0)
 
 loc_12F70:
-		move.b	#6,$1C(a0)	; use "balancing" animation
 		bra.s	Obj01_ResetScr
 ; ===========================================================================
 
