@@ -15,6 +15,7 @@ align macro
 	cnop 0,\1
 	endm
 		include	"macro.asm"	; S1HS macros
+		include "sound/_smps2asm_inc.asm"
 StartOfRom:
 Vectors:	dc.l $FFFE00, EntryPoint, BusError, AddressError
 		dc.l IllegalInstr, ZeroDivide, ChkInstr, TrapvInstr
@@ -24477,6 +24478,8 @@ AirRoll_Checks:
         rts ; Return.
 AirRoll_Set:
         move.b    #2,$1C(a0) ; Set Sonic's animation to the rolling animation.
+	move.w    #$A0,d0
+        jsr    (PlaySound_Special).l ;
 
 ; ---------------------------------------------------------------------------
 ; Subroutine to make Sonic perform a spindash
@@ -40759,7 +40762,7 @@ SoundIndex:	dc.l SoundA0, SoundA1, SoundA2
 		dc.l SoundCA, SoundCB, SoundCC
 		dc.l SoundCD, SoundCE, SoundCF
 SoundD0Index:	dc.l SoundD0
-SoundA0:	incbin	sound\soundA0.bin
+SoundA0:	include	sound\kick.asm
 		even
 SoundA1:	incbin	sound\soundA1.bin
 		even
