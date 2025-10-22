@@ -9,7 +9,6 @@ smpsHeaderStartSong = 1
 ; FM5 Data
 kick_FM5:
 	smpsPan             panCenter, $00
-	smpsSetvoice        $00
 	smpsAlterVol        $7F
 	smpsSetvoice        $01
 	smpsAlterVol        $81

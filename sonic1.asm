@@ -12445,6 +12445,8 @@ loc_A1EC:				; XREF: Obj26_Solid
 		bmi.s	loc_A20A
 		cmpi.b	#2,$1C(a1)	; is Sonic rolling?
 		beq.s	loc_A25C	; if yes, branch
+		cmpi.b	#$1F,$1C(a1)	; is Sonic spin-dashing?
+		beq.s	loc_A25C	; if yes, branch
 
 loc_A20A:
 		tst.w	d1
@@ -23792,7 +23794,6 @@ Obj01_NotRight:
 		bne.w	Obj01_ResetScr	; if yes, branch
 		bclr	#5,$22(a0)
 		move.b	#5,$1C(a0)	; use "standing" animation
-		btst	#3,$22(a0)
 		moveq	#0,d0
 		move.b	$3D(a0),d0
 		lsl.w	#6,d0
@@ -24519,6 +24520,7 @@ locret_1AC8C:
 ; ---------------------------------------------------------------------------
 
 loc_1AC8E:
+		move.b	#$1F,$1C(a0)
 		;move.b	($FFFFF602).w,d0
 		;btst	#1,d0
 		theld	B,(Joypad)	; is B button held?
