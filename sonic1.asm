@@ -24484,8 +24484,10 @@ AirRoll_Set:
 Sonic_SpinDash:
 		tst.b	$39(a0)
 		bne.s	loc_1AC8E
-		cmpi.b	#0,$1C(a0) ; check if walking anim
-		bne.s	locret_1AC8C
+		cmpi.b	#$10,$1C(a0) ; check if spring anim
+		beq.s	locret_1AC8C
+		cmpi.b	#2,$1C(a0) ; check if rolling anim
+		beq.s	locret_1AC8C
 		move.b	($FFFFF603).w,d0
 		tpress	B,(Joypad)	; is B button pressed?
 		beq.w	locret_1AC8C
