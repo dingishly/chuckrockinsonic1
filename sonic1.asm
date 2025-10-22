@@ -23704,7 +23704,7 @@ loc_12E0E:
 ; ---------------------------------------------------------------------------
 
 Obj01_MdNormal:				; XREF: Obj01_Modes
-		;bsr.w	Sonic_SpinDash
+		bsr.w	Sonic_SpinDash
 		bsr.w	Sonic_Jump
 		bsr.w	Sonic_SlopeResist
 		bsr.w	Sonic_Move
@@ -23713,7 +23713,7 @@ Obj01_MdNormal:				; XREF: Obj01_Modes
 		jsr	SpeedToPos
 		bsr.w	Sonic_AnglePos
 		bsr.w	Sonic_SlopeRepel
-		bsr.w   Sonic_AirRoll
+		;bsr.w   Sonic_AirRoll
 		rts	
 ; ===========================================================================
 
@@ -24487,14 +24487,14 @@ AirRoll_Set:
 Sonic_SpinDash:
 		tst.b	$39(a0)
 		bne.s	loc_1AC8E
-		cmpi.b	#8,$1C(a0)
+		cmpi.b	#0,$1C(a0) ; check if walking anim
 		bne.s	locret_1AC8C
 		move.b	($FFFFF603).w,d0
-		andi.b	#$70,d0
+		tpress	B,(Joypad)	; is B button pressed?
 		beq.w	locret_1AC8C
 		move.b	#9,$1C(a0)
-		move.w	#$E0,d0
-		jsr	(PlaySound_Special).l
+		;move.w	#$E0,d0
+		;jsr	(PlaySound_Special).l
 		addq.l	#4,sp
 		move.b	#1,$39(a0)
 		move.w	#0,$3A(a0)
