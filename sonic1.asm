@@ -23808,32 +23808,9 @@ Obj01_NotRight:
 		subq.w	#4,d2
 		add.w	8(a0),d1
 		sub.w	8(a1),d1
-		cmpi.w	#4,d1
-		blt.s	loc_12F6A
-		cmp.w	d2,d1
-		bge.s	loc_12F5A
-		bra.s	Sonic_LookUp
 ; ===========================================================================
 
-Sonic_Balance:
-		blt.s	Sonic_LookUp
-		cmpi.b	#3,$36(a0)
-		bne.s	loc_12F62
 
-loc_12F5A:
-		bclr	#0,$22(a0)
-		bra.s	loc_12F70
-; ===========================================================================
-
-loc_12F62:
-		cmpi.b	#3,$37(a0)
-		bne.s	Sonic_LookUp
-
-loc_12F6A:
-		bset	#0,$22(a0)
-
-loc_12F70:
-		bra.s	Obj01_ResetScr
 ; ===========================================================================
 
 Sonic_LookUp:
