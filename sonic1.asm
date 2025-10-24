@@ -23673,6 +23673,7 @@ Obj01_InWater:
 		move.w	#$235,($FFFFF760).w ; change Sonic's top speed
 		move.w	#$235,($FFFFF762).w ; change Sonic's acceleration
 		move.w	#$235,($FFFFF764).w ; change Sonic's deceleration
+		move.b	#20,$1C(a0)	; water wiener wiggle
 		asr	$10(a0)
 		asr	$12(a0)
 		asr	$12(a0)
