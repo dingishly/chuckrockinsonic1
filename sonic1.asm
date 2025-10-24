@@ -15930,6 +15930,8 @@ Obj36_Upright:				; XREF: Obj36_Solid
 Obj36_Hurt:				; XREF: Obj36_SideWays; Obj36_Upright
 		tst.b	($FFFFFE2D).w	; is Sonic invincible?
 		bne.s	Obj36_Display	; if yes, branch
+		tst.w	($FFFFD030).w	; +++ is Sonic invulnerable?
+		bne.s	Obj36_Display	; +++ if yes, branch
 		move.l	a0,-(sp)
 		movea.l	a0,a2
 		lea	($FFFFD000).w,a0
@@ -34791,7 +34793,10 @@ Hurt_Shield:
 		move.b	#4,$24(a0)
 		bsr.w	Sonic_ResetOnFloor
 		bset	#1,$22(a0)
-		;move.w	#-$400,$12(a0)	; make Sonic bounce away from the object
+		cmpi.b	#$36,(a2)	; was damage caused by spikes?
+		bne.s	Hurt_Reverse	; if not, branch
+		move.w	#-$550,$12(a0)	; make Sonic bounce away from the object
+		clr.w	$10(a0)		; clear horizontal speed
 		;move.w	#-$200,$10(a0)
 		;btst	#6,$22(a0)
 		;beq.s	Hurt_Reverse
