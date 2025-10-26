@@ -25011,7 +25011,7 @@ locret_13860:
 
 Obj01_Death:				; XREF: Obj01_Index
 		bsr.w	GameOver
-		jsr	ObjectFall
+		;jsr	ObjectFall
 		bsr.w	Sonic_RecordPos
 		bsr.w	Sonic_Animate
 		bsr.w	LoadSonicDynPLC
@@ -25021,11 +25021,11 @@ Obj01_Death:				; XREF: Obj01_Index
 
 
 GameOver:				; XREF: Obj01_Death
-		move.w	($FFFFF72E).w,d0
-		addi.w	#$100,d0
-		cmp.w	$C(a0),d0
-		bcc.w	locret_13900
-		move.w	#-$38,$12(a0)
+		;move.w	($FFFFF72E).w,d0
+		;addi.w	#$100,d0
+		;cmp.w	$C(a0),d0
+		;bcc.w	locret_13900
+		;move.w	#-$38,$12(a0)
 		addq.b	#2,$24(a0)
 		clr.b	($FFFFFE1E).w	; stop time counter
 		addq.b	#1,($FFFFFE1C).w ; update lives	counter
@@ -34844,7 +34844,7 @@ KillSonic:
 		move.b	#6,$24(a0)
 		bsr.w	Sonic_ResetOnFloor
 		bset	#1,$22(a0)
-		move.w	#-$700,$12(a0)
+		;move.w	#-$700,$12(a0)
 		move.w	#0,$10(a0)
 		move.w	#0,$14(a0)
 		move.w	$C(a0),$38(a0)
