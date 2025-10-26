@@ -35,7 +35,7 @@
 		dc.w SonAni_SpinDash-SonicAniData	;1F
 SonAni_Walk:	dc.b $FF, 8, 9,	$A, $B,	6, 7, $FF
 SonAni_Run:	dc.b $FF, 8, 9,	$A, $B,	6, 7, $FF
-SonAni_Roll:	dc.b $FE, $36, $FF
+SonAni_Roll:	dc.b $FE, $36, $36, $36, $36, $36, $36, $FD, $10
 SonAni_Roll2:	dc.b $FE, $36, $FF
 SonAni_Push:	dc.b $FF, 8, 9,	$A, $B,	6, 7, $FF
 SonAni_Wait:	dc.b 7, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 4, 5, 4, 5, 4, 5, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 4, 5, 4, 5, 4, 5, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, $58, $59, $5A, $5B, $5C, $5B, $5A, $5D, $5E, $5D, $58, 2, $FF 0

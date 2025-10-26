@@ -24454,8 +24454,8 @@ Sonic_AirRoll:
 AirRoll_Checks:
         cmpi.b    #2,$1C(a0) ; Is animation 2 active?
         bne.s   AirRoll_Set ; If not, branch.
-        btst    #1,$22(a0) ; Is bit 1 in the status bitfield enabled?
-        bne.s   AirRoll_Set ; If so, branch.
+        ;btst    #1,$22(a0) ; Is bit 1 in the status bitfield enabled?
+        ;bne.s   AirRoll_Set ; If so, branch.
         rts ; Return.
 AirRoll_Set:
         move.b    #2,$1C(a0) ; Set Sonic's animation to the rolling animation.
