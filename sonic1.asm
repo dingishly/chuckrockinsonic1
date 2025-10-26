@@ -24482,8 +24482,8 @@ Sonic_SpinDash:
 		tpress	B,(Joypad)	; is B button pressed?
 		beq.w	locret_1AC8C
 		move.b	#$1F,$1C(a0)
-		;move.w	#$E0,d0
-		;jsr	(PlaySound_Special).l
+		move.w	#$D1,d0
+		jsr	(PlaySound_Special).l
 		addq.l	#4,sp
 		move.b	#1,$39(a0)
 		move.w	#0,$3A(a0)
@@ -24527,8 +24527,8 @@ loc_1AC8E:
 loc_1ACF4:
 		bset	#2,$22(a0)
 		move.b	#0,($FFFFD11C).w
-		move.w	#$BC,d0
-		jsr	(PlaySound_Special).l
+		;move.w	#$BC,d0
+		;jsr	(PlaySound_Special).l
 		bra.s	loc_1AD78
 ; ===========================================================================
 Dash_Speeds:	dc.w  $800		; 0
@@ -24556,8 +24556,8 @@ loc_1AD48:
 		andi.b	#$70,d0	; 'p'
 		beq.w	loc_1AD78
 		move.w	#$1F00,$1C(a0)
-		;move.w	#$E0,d0	; 'à'
-		;jsr	(PlaySound_Special).l
+		move.w	#$D1,d0	; 'à'
+		jsr	(PlaySound_Special).l
 		addi.w	#$200,$3A(a0)
 		cmpi.w	#$800,$3A(a0)
 		bcs.s	loc_1AD78
@@ -38994,8 +38994,10 @@ Sound_ChkValue:				; XREF: sub_71B4C
 		bls.w	Sound_A0toCF	; sound	$A0-$CF
 		cmpi.b	#$D0,d7
 		bcs.w	locret_71F8C
-		cmpi.b	#$E0,d7
-		bcs.w	Sound_D0toDF	; sound	$D0-$DF
+		cmpi.b	#$D1,d7
+		bcs.w	Sound_D0toDF	; sound	$D0
+		cmpi.b	#$DF,d7
+		blo.w	Sound_D1toDF	; sound	$D1-$DF
 		cmpi.b	#$E4,d7
 		bls.s	Sound_E0toE4	; sound	$E0-$E4
 
@@ -39248,6 +39250,17 @@ byte_721C2:	dc.b $80, $A0, $C0, 0
 ; Play normal sound effect
 ; ---------------------------------------------------------------------------
 
+Sound_D1toDF:
+		tst.b	$27(a6)
+		bne.w	loc_722C6
+		tst.b	4(a6)
+		bne.w	loc_722C6
+		tst.b	$24(a6)
+		bne.w	loc_722C6
+		movea.l	(Go_SoundIndex).l,a0
+		sub.b	#$A1,d7
+		bra	SoundEffects_Common
+
 Sound_A0toCF:				; XREF: Sound_ChkValue
 		tst.b	$27(a6)
 		bne.w	loc_722C6
@@ -39274,6 +39287,7 @@ Sound_notB5:
 Sound_notA7:
 		movea.l	(Go_SoundIndex).l,a0
 		subi.b	#$A0,d7
+SoundEffects_Common:
 		lsl.w	#2,d7
 		movea.l	(a0,d7.w),a3
 		movea.l	a3,a1
@@ -40746,6 +40760,7 @@ SoundIndex:	dc.l SoundA0, SoundA1, SoundA2
 		dc.l SoundC7, SoundC8, SoundC9
 		dc.l SoundCA, SoundCB, SoundCC
 		dc.l SoundCD, SoundCE, SoundCF
+		dc.l SoundD1
 SoundD0Index:	dc.l SoundD0
 SoundA0:	include	sound\kick.asm
 		even
@@ -40844,6 +40859,8 @@ SoundCE:	incbin	sound\soundCE.bin
 SoundCF:	incbin	sound\soundCF.bin
 		even
 SoundD0:	incbin	sound\soundD0.bin
+		even
+SoundD1:	include	sound\hump.asm
 		even
 SegaPCM:	incbin	sound\segapcm.bin
 		even
