@@ -64,5 +64,5 @@ SonAni_LZSlide:	dc.b 7, $55, $55, $FF
 SonAni_Blank:	dc.b $77, 0, $FD, 0
 SonAni_Float3:	dc.b 3,	$3C, $3D, $53, $3E, $54, $FF, 0
 SonAni_Float4:	dc.b 3,	$3C, $FD, 0
-SonAni_SpinDash:	dc.b $6, $33, $34, $35, $34, 1, $FE, 1, 0
+SonAni_SpinDash:	dc.b $6, $33, $34, $35, $34, $FD, 5
 		even

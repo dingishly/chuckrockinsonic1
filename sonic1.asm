@@ -24478,12 +24478,16 @@ Sonic_SpinDash:
 		beq.s	locret_1AC8C
 		cmpi.b	#8,$1C(a0) ; check if ducking anim
 		beq.s	locret_1AC8C
+		cmpi.b	#$1F,$1C(a0) ; check if ducking anim
+		beq.s	lockhump
 		move.b	($FFFFF603).w,d0
 		tpress	B,(Joypad)	; is B button pressed?
 		beq.w	locret_1AC8C
 		move.b	#$1F,$1C(a0)
 		move.w	#$D1,d0
 		jsr	(PlaySound_Special).l
+		cmpi.b	#5,$1C(a0) ; check if waiting anim
+		beq.s	unlockhump
 		addq.l	#4,sp
 		move.b	#1,$39(a0)
 		move.w	#0,$3A(a0)
@@ -24496,7 +24500,10 @@ loc_1AC84:
 		bsr.w	Sonic_AnglePos
 
 locret_1AC8C:
-		rts	
+		rts
+
+lockhump:	move.b	#$81,($FFFFF7C8).w ; lock controls
+unlockhump: 	clr.b	($FFFFF7C8).w	; unlock controls
 ; ---------------------------------------------------------------------------
 
 loc_1AC8E:
@@ -24505,13 +24512,13 @@ loc_1AC8E:
 		;btst	#1,d0
 		theld	B,(Joypad)	; is B button held?
 		bne.w	loc_1AD30
-		move.b	#$E,$16(a0)
-		move.b	#7,$17(a0)
+		;move.b	#$E,$16(a0)
+		;move.b	#7,$17(a0)
 		move.b	#$1F,$1C(a0)
 		;addq.w	#5,$C(a0)
 		move.b	#0,$39(a0)
 		moveq	#0,d0
-		move.b	$3A(a0),d0
+		;move.b	$3A(a0),d0
 		add.w	d0,d0
 		move.w	$14(a0),d0
 		subi.w	#$800,d0
@@ -24525,8 +24532,8 @@ loc_1AC8E:
 		neg.w	$14(a0)
 
 loc_1ACF4:
-		bset	#2,$22(a0)
-		move.b	#0,($FFFFD11C).w
+		;bset	#2,$22(a0)
+		;move.b	#0,($FFFFD11C).w
 		;move.w	#$BC,d0
 		;jsr	(PlaySound_Special).l
 		bra.s	loc_1AD78
@@ -24552,8 +24559,8 @@ loc_1AD30:				; If still charging the dash...
 		move.w	#0,$3A(a0)
 
 loc_1AD48:
-		move.b	($FFFFF603).w,d0
-		andi.b	#$70,d0	; 'p'
+		;move.b	($FFFFF603).w,d0
+		;andi.b	#$70,d0	; 'p'
 		beq.w	loc_1AD78
 		move.w	#$1F00,$1C(a0)
 		move.w	#$D1,d0	; 'à'
