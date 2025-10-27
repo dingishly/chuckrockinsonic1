@@ -34864,8 +34864,8 @@ Hurt_Shield:
 		move.w	#-$550,$12(a0)	; make Sonic bounce away from the object
 		clr.w	$10(a0)		; clear horizontal speed
 notspikes:
-		move.w	#-$100,$12(a0)
-		move.w	#-$180,$10(a0)
+		move.w	#-$150,$12(a0)
+		move.w	#-$200,$10(a0)
 		btst	#6,$22(a0)
 		beq.s	Hurt_Reverse
 		move.w	#-$200,$12(a0)
