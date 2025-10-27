@@ -34860,14 +34860,16 @@ Hurt_Shield:
 		bsr.w	Sonic_ResetOnFloor
 		bset	#1,$22(a0)
 		cmpi.b	#$36,(a2)	; was damage caused by spikes?
-		bne.s	Hurt_Reverse	; if not, branch
+		bne.s	notspikes	; if not, branch
 		move.w	#-$550,$12(a0)	; make Sonic bounce away from the object
 		clr.w	$10(a0)		; clear horizontal speed
-		;move.w	#-$200,$10(a0)
-		;btst	#6,$22(a0)
-		;beq.s	Hurt_Reverse
-		;move.w	#-$200,$12(a0)
-		;move.w	#-$100,$10(a0)
+notspikes:
+		move.w	#-$100,$12(a0)
+		move.w	#-$180,$10(a0)
+		btst	#6,$22(a0)
+		beq.s	Hurt_Reverse
+		move.w	#-$200,$12(a0)
+		move.w	#-$300,$10(a0)
 
 Hurt_Reverse:
 		bcs.s	Hurt_ChkSpikes	; if Sonic is left of the object, branch
