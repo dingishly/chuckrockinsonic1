@@ -32,10 +32,11 @@
 		dc.w SonAni_Blank-SonicAniData
 		dc.w SonAni_Float3-SonicAniData
 		dc.w SonAni_Float4-SonicAniData
-		dc.w SonAni_SpinDash-SonicAniData	;1F
+		dc.w SonAni_SpinDash-SonicAniData	; 1F
+		dc.w SonAni_Fall-SonicAniData		; 20
 SonAni_Walk:	dc.b $FF, 8, 9,	$A, $B,	6, 7, $FF
 SonAni_Run:	dc.b $FF, 8, 9,	$A, $B,	6, 7, $FF
-SonAni_Roll:	dc.b $FE, $36, $36, $36, $36, $36, $36, $FD, $10
+SonAni_Roll:	dc.b $FE, $36, $36, $36, $36, $36, $36, $FD, $20
 SonAni_Roll2:	dc.b $FE, $36, $FF
 SonAni_Push:	dc.b $FF, 8, 9,	$A, $B,	6, 7, $FF
 SonAni_Wait:	dc.b 7, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 4, 5, 4, 5, 4, 5, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 4, 5, 4, 5, 4, 5, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, $58, $59, $5A, $5B, $5C, $5B, $5A, $5D, $5E, $5D, $58, 2, $FF 0
@@ -65,4 +66,5 @@ SonAni_Blank:	dc.b $77, 0, $FD, 0
 SonAni_Float3:	dc.b 3,	$3C, $3D, $53, $3E, $54, $FF, 0
 SonAni_Float4:	dc.b 3,	$3C, $FD, 0
 SonAni_SpinDash:	dc.b $4, $33, $34, $35, $34, $FD, 5
+SonAni_Fall:	dc.b 6, $40, $40, $40, $40, $40, $40, $40, $40, $40, $40, $40, $40, $40, $40, $FE $40, 0
 		even
